@@ -1,0 +1,27 @@
+---
+title: "Developing Data Products: Week 3 Assignment"
+author: "Sreenivasulu Parimi"
+date: "June 30, 2018"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Visualizing the US Stock Market Data
+
+```{r, message=FALSE}
+library(tidyr)
+library(dplyr)
+library(plotly)
+
+data("EuStockMarkets")
+stocks <- as.data.frame(EuStockMarkets) %>%
+      gather(index, price) %>%
+      mutate(time = rep(time(EuStockMarkets), 4))
+
+plot_ly(stocks, x = stocks$time, y = stocks$price, color = stocks$index)
+```
+
+# Thanks
